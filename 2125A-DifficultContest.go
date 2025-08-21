@@ -11,20 +11,6 @@ func solve(){
 		return
 	}
 	runeStr:=[]rune(s)
-	numF:=0
-	numN:=0
-	numT:=0
-	for i:=0; i<len(s); i++{
-		if string(s[i]) == "F"{
-			numF++
-		}
-		if string(s[i]) == "N"{
-			numN++
-		}
-		if string(s[i]) == "T"{
-			numT++
-		}
-	}
 	sort.Slice(runeStr, func(i, j int) bool {
 		return runeStr[i] > runeStr[j]
 	})
@@ -38,4 +24,5 @@ func main(){
 	for i:=0; i<t; i++{
 		solve()
 	}
+
 }
