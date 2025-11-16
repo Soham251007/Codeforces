@@ -1,34 +1,43 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 )
 
-
-func solve(){
+func solve(in *bufio.Reader, out *bufio.Writer) {
 	var n, a int
-	fmt.Scan(&n, &a)
-	v := make([]int, n)
-	small := 0
-	big:=0
-	for i:=0; i<n; i++{
-		fmt.Scan(&v[i])
-		if v[i]>a{
-			big++
-		}else if v[i]<a{
+	fmt.Fscan(in, &n, &a)
+
+	small, big := 0, 0
+
+	for i := 0; i < n; i++ {
+		var x int
+		fmt.Fscan(in, &x)
+		if x < a {
 			small++
+		} else if x > a {
+			big++
 		}
 	}
-	if small>big{
-		fmt.Println(a-1)
-	}else{
-		fmt.Println(a+1)
+
+	if small > big {
+		fmt.Fprintln(out, a-1)
+	} else {
+		fmt.Fprintln(out, a+1)
 	}
 }
-func main(){
+
+func main() {
+	in := bufio.NewReader(os.Stdin)
+	out := bufio.NewWriter(os.Stdout)
+	defer out.Flush()
+
 	var t int
-	fmt.Scan(&t)
-	for i:=0; i<t; i++{
-		solve()
+	fmt.Fscan(in, &t)
+
+	for i := 0; i < t; i++ {
+		solve(in, out)
 	}
 }
